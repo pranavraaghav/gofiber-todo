@@ -17,7 +17,5 @@ func main() {
 		ErrorHandler: utils.ErrorHandler,
 	})
 
-	app.Use()
-
 	app.Listen(fmt.Sprintf(":%v", config.PORT))
 }
