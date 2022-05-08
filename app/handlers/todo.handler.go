@@ -15,6 +15,7 @@ func CreateTodo(c *fiber.Ctx) error {
 	}
 
 	d := &dal.Todo{
+		User: utils.GetUser(c),
 		Task: b.Task,
 	}
 
