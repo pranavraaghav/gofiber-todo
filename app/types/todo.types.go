@@ -16,7 +16,7 @@ type TodoCreateResponse struct {
 }
 
 type TodosResponse struct {
-	Todo *[]TodoResponse `json:"todos"`
+	Todos *[]TodoResponse `json:"todos"`
 }
 
 type CheckTodoDTO struct {

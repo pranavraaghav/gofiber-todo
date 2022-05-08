@@ -10,4 +10,5 @@ func TodoRoutes(app fiber.Router) {
 	r := app.Group("/todo").Use(middleware.Auth)
 
 	r.Post("/create", handlers.CreateTodo)
+	r.Get("/", handlers.GetTodos)
 }

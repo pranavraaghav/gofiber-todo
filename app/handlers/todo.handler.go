@@ -31,3 +31,17 @@ func CreateTodo(c *fiber.Ctx) error {
 		},
 	})
 }
+
+func GetTodos(c *fiber.Ctx) error {
+	d := &[]types.TodoResponse{}
+
+	err := dal.FindTodosByUser(d, utils.GetUser(c)).Error
+	if err != nil {
+		return fiber.NewError(fiber.StatusConflict, err.Error())
+	}
+
+	return c.JSON(&types.TodosResponse{
+		Todos: d,
+	})
+
+}
