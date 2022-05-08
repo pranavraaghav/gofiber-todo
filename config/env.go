@@ -6,7 +6,8 @@ import (
 )
 
 var (
-	DB = GetEnv("DB", "gotodo.db")
+	DB   = GetEnv("DB", "gotodo.db")
+	PORT = GetEnv("PORT", "5000")
 )
 
 func GetEnv(name string, fallback string) string {
