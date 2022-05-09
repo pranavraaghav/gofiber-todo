@@ -9,6 +9,9 @@ import (
 func TodoRoutes(app fiber.Router) {
 	r := app.Group("/todo").Use(middleware.Auth)
 
+	r.Post("/:todoID/check", handlers.CheckTodo)
 	r.Post("/create", handlers.CreateTodo)
+	r.Patch("/:todoID", handlers.UpdateTodo)
+	r.Delete("/:todoID", handlers.DeleteTodo)
 	r.Get("/", handlers.GetTodos)
 }

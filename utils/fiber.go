@@ -10,12 +10,11 @@ func ParseBody(c *fiber.Ctx, body interface{}) *fiber.Error {
 	return nil
 }
 
-func ParseBodyAndValidate(c *fiber.Ctx, body interface{}) *fiber.Error {
-	if err := c.BodyParser(body); err != nil {
-		return fiber.ErrBadRequest
+func ParseBodyAndValidate(ctx *fiber.Ctx, body interface{}) *fiber.Error {
+	if err := ParseBody(ctx, body); err != nil {
+		return err
 	}
-
-	return nil
+	return Validate(body)
 }
 
 func GetUser(c *fiber.Ctx) *uint {
