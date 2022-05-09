@@ -81,3 +81,19 @@ func Signup(c *fiber.Ctx) error {
 		},
 	})
 }
+
+func Refresh(c *fiber.Ctx) error {
+	id := utils.GetUser(c)
+	if id == nil {
+		return fiber.NewError(fiber.StatusBadRequest, "ID not in request")
+	}
+
+	t, exp := jwt.Generate(&jwt.TokenPayload{
+		ID: *id,
+	})
+
+	return c.JSON(&types.AccessResponse{
+		Token: t,
+		Exp:   exp,
+	})
+}
