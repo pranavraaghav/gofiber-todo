@@ -1,13 +1,13 @@
 package types
 
 type LoginDTO struct {
-	Email    string `json:"email" validate:"required, email"`
+	Email    string `json:"email" validate:"required,email"`
 	Password string `json:"password" validate:"password"`
 }
 
 type SignupDTO struct {
 	LoginDTO
-	Name string `json:"name" validate:"required, min=3"`
+	Name string `json:"name" validate:"required,min=3"`
 }
 
 type UserResponse struct {
@@ -19,6 +19,7 @@ type UserResponse struct {
 
 type AccessResponse struct {
 	Token string `json:"token"`
+	Exp   string `json:"exp"`
 }
 
 type AuthResponse struct {

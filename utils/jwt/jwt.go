@@ -13,7 +13,7 @@ type TokenPayload struct {
 	ID uint
 }
 
-func Generate(payload *TokenPayload) string {
+func Generate(payload *TokenPayload) (token string, expires_in string) {
 	v, err := time.ParseDuration(config.TOKENEXP)
 
 	if err != nil {
@@ -25,13 +25,13 @@ func Generate(payload *TokenPayload) string {
 		"ID":  payload.ID,
 	})
 
-	token, err := t.SignedString([]byte(config.TOKENKEY))
+	token, err = t.SignedString([]byte(config.TOKENKEY))
 
 	if err != nil {
 		panic(err)
 	}
 
-	return token
+	return token, v.String()
 
 }
 

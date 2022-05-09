@@ -31,12 +31,13 @@ func Login(c *fiber.Ctx) error {
 		return fiber.NewError(fiber.StatusUnauthorized, "Invalid password")
 	}
 
-	t := jwt.Generate(&jwt.TokenPayload{ID: u.ID})
+	t, exp := jwt.Generate(&jwt.TokenPayload{ID: u.ID})
 
 	return c.JSON(&types.AuthResponse{
 		User: u,
 		Auth: &types.AccessResponse{
 			Token: t,
+			Exp:   exp,
 		},
 	})
 }
@@ -64,7 +65,7 @@ func Signup(c *fiber.Ctx) error {
 		return fiber.NewError(fiber.StatusConflict, err.Error.Error())
 	}
 
-	t := jwt.Generate(&jwt.TokenPayload{
+	t, exp := jwt.Generate(&jwt.TokenPayload{
 		ID: user.ID,
 	})
 
@@ -76,6 +77,7 @@ func Signup(c *fiber.Ctx) error {
 		},
 		Auth: &types.AccessResponse{
 			Token: t,
+			Exp:   exp,
 		},
 	})
 }
