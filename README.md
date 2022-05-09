@@ -12,6 +12,7 @@ Todo app built using GoFiber
 
 1. Clone this repo
 2. Run `go get`
+3. Copy contents of `sample.env` into a `.env` file (or rename the file)
 
 # Running
 
